@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw_orders
+    database: CAPSTONE_ECOMMERCE_DB
+    schema: RAW_ORDERS
+    tables: 
+      - name: orders
+      - name: order_items
+  
+  - name: raw_catalog
+    database: CAPSTONE_ECOMMERCE_DB
+    schema: RAW_CATALOG
+    tables: 
+      - name: customers
+
