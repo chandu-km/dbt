@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: fct_orders_analytics
+    description: "One row per order, ready for analysts and dashboards."
+    columns:
+      - name: order_id
+        description: "Uniquer id of the order."
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_catalog__customers')
+                field: customer_id
+      - name: order_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [ 'PLACED','CONFIRMED', 'OUT_FOR_DELIVERY', 'DELIVERED', 'CANCELLED', 'RETURNED']
+      - name: region
+        description: "Regions of the delivery city, from the city_regions seed."
+      - name: net_revenue
+        description: "Items minus discount plus delivery fee, in rupee."   
+        data_tests:
+          - non_negative    
+
+  - name: fct_orders_incremental
+    columns:
+      - name: order_id 
+        data_tests:
+          - unique
+          - not_null
+                   
