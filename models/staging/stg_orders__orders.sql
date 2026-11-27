@@ -15,8 +15,8 @@ cleaned as (
         upper(payment_method)      as payment_method,
         initcap(delivery_city)     as delivery_city,
         initcap(delivery_state)    as delivery_state,
-        round(discount_amount, 2)  as discount_amount,
-        round(delivery_fee, 2)     as delivery_fee,
+        {{ round_currency('discount_amount') }}  as discount_amount,
+        {{ round_currency('delivery_fee') }}   as delivery_fee,
         order_placed_at,
         created_at,
         updated_at
